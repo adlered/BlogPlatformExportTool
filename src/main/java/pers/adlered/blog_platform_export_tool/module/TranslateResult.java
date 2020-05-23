@@ -14,13 +14,7 @@ public class TranslateResult {
     private String author;
     private String title;
     private String articleContent;
-
-    public TranslateResult(Date date, String author, String title, String articleContent) {
-        this.date = date;
-        this.author = author;
-        this.title = title;
-        this.articleContent = articleContent;
-    }
+    private String link;
 
     public Date getDate() {
         return date;
@@ -52,5 +46,13 @@ public class TranslateResult {
 
     public void setArticleContent(String articleContent) {
         this.articleContent = articleContent;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

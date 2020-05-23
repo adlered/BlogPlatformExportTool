@@ -1,10 +1,10 @@
 package pers.adlered.blog_platform_export_tool;
 
 import pers.adlered.blog_platform_export_tool.module.ModuleService;
+import pers.adlered.blog_platform_export_tool.module.TranslateResult;
 import pers.adlered.blog_platform_export_tool.util.Decompress;
+import pers.adlered.blog_platform_export_tool.util.XML;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -15,16 +15,16 @@ import java.util.List;
  * @date : 2020-05-14
  **/
 public class Launcher {
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+        List<TranslateResult> list = run("CNBlogs");
+        XML.printResult(list);
+    }
+
+    public static List<TranslateResult> run(String blogType) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Decompress decompress = new Decompress("file");
         decompress.run();
-        List<String> blogTypeList = new ArrayList<>();
-        Collections.addAll(blogTypeList,
-                "CNBLOGS"
-                );
-        String blogType = blogTypeList.get(0);
-        Class serviceClass = Class.forName("pers.adlered.blog_platform_export_tool.module." + blogType.toLowerCase() + "." + blogType.toUpperCase() + "ModuleServiceImpl");
+        Class<?> serviceClass = Class.forName("pers.adlered.blog_platform_export_tool.module." + blogType.toLowerCase() + "." + blogType.toUpperCase() + "ModuleServiceImpl");
         ModuleService moduleService = (ModuleService) serviceClass.newInstance();
-        moduleService.analyze();
+        return moduleService.analyze();
     }
 }

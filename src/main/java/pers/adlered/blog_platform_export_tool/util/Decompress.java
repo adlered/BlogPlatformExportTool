@@ -14,10 +14,10 @@ import java.util.List;
  * @date : 2020-05-14
  **/
 public class Decompress {
-    final private String path;
+    public static String path;
 
     public Decompress(String path) {
-        this.path = path;
+        Decompress.path = path;
     }
 
     public void run() {
@@ -31,6 +31,7 @@ public class Decompress {
                 ZipUtil.unpack(new File(filename), new File(path));
             }
         }
+        delete(unzipFiles);
     }
 
     private List<String> analyze() {
@@ -48,5 +49,18 @@ public class Decompress {
             }
         }
         return result;
+    }
+
+    private void delete(List<String> unzipFiles) {
+        File dsStore = new File(path + "/.DS_Store");
+        if (dsStore.exists()) {
+            unzipFiles.add(dsStore.getName());
+        }
+        for (String i : unzipFiles) {
+            String filename = path + "/" + i;
+            File file = new File(filename);
+            boolean result = file.delete();
+            System.out.println("Remove " + i + "  " + result);
+        }
     }
 }
