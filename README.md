@@ -13,7 +13,7 @@
 在项目中输入代码：  
 
 ```
-List<TranslateResult> list = run("CNBlogs", "file");
+List<TranslateResult> list = run("CNBlogs", "temp/file");
 ```
 
 方法解释：  
