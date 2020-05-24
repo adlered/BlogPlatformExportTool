@@ -9,7 +9,7 @@
 
 首先，要在你的项目根目录下创建一个指定名称的目录（这里设置为根目录 temp 文件夹下的 file 文件夹）  
 将博客平台导出的备份文件放到该目录中  
-将该项目打包为 jar 包，引入到你的项目中  
+将该项目打包为 jar 包，引入到你的项目中（[这里有已经打包好的提供下载](https://github.com/adlered/BlogPlatformExportTool/releases)）  
 在项目中输入代码：  
 
 ```
